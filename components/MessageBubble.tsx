@@ -21,7 +21,7 @@ export default function MessageBubble({ message }: { message: ChatMessage }) {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} animate-slide-in`}>
       <div
-        className={`max-w-md lg:max-w-2xl px-4 py-3 rounded-lg ${
+        className={`max-w-2xl px-4 py-3 rounded-lg ${
           isUser
             ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
             : 'bg-slate-800/50 border border-indigo-500/30 text-slate-100'
@@ -30,8 +30,8 @@ export default function MessageBubble({ message }: { message: ChatMessage }) {
         {/* User Message */}
         {isUser && (
           <div>
-            <p className="whitespace-pre-wrap break-words">{message.content}</p>
-            
+            <p className="whitespace-pre-wrap break-words text-sm">{message.content}</p>
+
             {message.images && message.images.length > 0 && (
               <div className="mt-3 space-y-2">
                 {message.images.map((img, idx) => (
@@ -45,7 +45,7 @@ export default function MessageBubble({ message }: { message: ChatMessage }) {
                 ))}
               </div>
             )}
-            
+
             {message.files && message.files.length > 0 && (
               <div className="mt-3 space-y-1">
                 {message.files.map((file, idx) => (
@@ -138,7 +138,9 @@ export default function MessageBubble({ message }: { message: ChatMessage }) {
           </div>
         )}
 
-        <div className={`text-xs mt-2 ${isUser ? 'text-indigo-100' : 'text-slate-400'}`}>
+        <div className={`text-xs mt-2 ${
+          isUser ? 'text-indigo-100' : 'text-slate-400'
+        }`}>
           {message.timestamp.toLocaleTimeString()}
         </div>
       </div>

@@ -36,10 +36,16 @@ export const sendMessage = async (
     const encodedMessage = encodeURIComponent(message);
     const endpoint = `${API_BASE}/${model}?pesan=${encodedMessage}`;
 
-    const response = await axios.get(endpoint);
+    const response = await axios.get(endpoint, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    const responseText = response.data?.pesan || response.data?.message || 'No response';
     
     return {
-      message: response.data?.pesan || response.data?.message || 'Response received',
+      message: responseText,
       model: AI_MODELS[model],
       timestamp: new Date(),
     };
